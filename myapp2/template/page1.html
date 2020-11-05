@@ -1,0 +1,93 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+     
+
+<div class="row">
+  <div class="col-md-7 col-xs-4 col-lg-12 col-sm-4">
+<nav class="navbar navbar-expand-lg navbar-expand-md navbar-expand-xs bg-dark navbar-dark">
+<a class="navbar-brand" href="#"><img class="img-responsive Logopic"src="{% static 'images/My_Smart Class_Logo.png'%}"></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#"> Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contact us</a>
+      <li class="nav-item">
+      <a class="nav-link" href="#">Sign in</a>
+    </ul>
+  </div>
+
+</nav>
+</div>
+</div>
+
+<div class="row">
+ <div class="col-md-6 col-xs-4 col-lg-12 col-sm-4">
+  <div id="imageCarousel" class="carousel slide" data-interval="2000" data-ride="carousel" data-pause="hover" data-wrap="true">
+  <div class="carousel-inner">
+ <div class="item active">
+
+  <div class="row" >
+     <div class="col-xs-4">
+
+      <img class="img-responsive homebgpic" src="{% static 'images/My_Smart Class_3.png'%}">
+
+      <div class="row">
+        <div class="img-responsive centered"><h1>Your class is just a click away...</h1>
+        </div>
+      </div>
+  
+      <div class="row">
+
+        <div class="col-xs-4 img-responsive Insbtn">
+          <button class="btn btn-success btn-lg ">INSTRUCTORS: FREE SIGN UP</button>
+        </div>
+
+        <div class="col-xs-4 img-responsive Stubtn">
+          <button class="btn btn-primary btn-lg">STUDENTS: JOIN YOUR CLASS</button>
+        </div>
+      </div>
+
+     </div>
+  </div> 
+
+  
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+ 
+
+</div>
+
+</body>
+</html>
