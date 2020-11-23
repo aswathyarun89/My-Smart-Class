@@ -9,6 +9,18 @@
                             height: 500px;
                         }
                         
+                        .menu-border-ins-sec1 {
+                            border-radius: 25px;
+                            width: 230px;
+                            height: 200px;
+                        }
+                        
+                        .menu-border-ins-sec2 {
+                            border-radius: 25px;
+                            width: 230px;
+                            height: 400px;
+                        }
+                        
                         .content-border {
                             border-radius: 25px;
                             margin-left: 2px;
@@ -28,4 +40,12 @@
                         
                         th {
                             background-color: #B1D3EE;
+                        }
+                        
+                        .modal-body .table-bordered td {
+                            border: 1px solid grey;
+                        }
+                        
+                        .modal-md {
+                            max-width: 80% !important;
                         }

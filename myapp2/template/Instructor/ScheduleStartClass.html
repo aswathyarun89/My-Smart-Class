@@ -1,0 +1,125 @@
+{% extends 'Instructor/base.html'%} {% block content %}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/style.css'%}">
+    <!-- <script src="{% static 'js/test.js'%}"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        .pad1 {
+            padding-top: 5%;
+            /* margin-top: 10% */
+        }
+        
+        .pad2 {
+            padding-top: 5%;
+            margin-top: 0px
+        }
+        
+        .mybutton {
+            height: 50px;
+            width: 80%;
+        }
+        
+        .font {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="column col-sm-2 ">
+                <span><img class="img-fluid rounded-circle" style="width:80%" src="{% static 'images/CourseLogo.jpg'%}"></span>
+            </div>
+            <div class="column col-sm-8 pt-2 mr-5">
+                <table class=" table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="font-weight-bold " width="15% ">Course Name</td>
+                            <td width="25% "></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold ">Course Owner</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold ">Course Duration</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold ">Course Details</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="column col-sm-10 pt-2 ml-2">
+            <table class=" table table-bordered">
+                <tbody>
+
+                    <h6 class="font-weight-bold text-center">Assigned Students</h4>
+                        <tr>
+                            <td>Student#1</td>
+                            <td>Student#2</td>
+                        </tr>
+                        <tr>
+                            <td>Student#3</td>
+                            <td>Student#4</td>
+                        </tr>
+                        <tr>
+                            <td>Student#5</td>
+                            <td>Student#6</td>
+                        </tr>
+                        <tr>
+                            <td>Student#7</td>
+                            <td>Student#8</td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-10  ml-4">
+            <div class="row">
+                <div class="col-lg-4  pad1">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px"> Assign Students</button></a>
+                </div>
+                <div class="col-lg-4 pad1">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px" > Schedule Class</button></a>
+                </div>
+                <div class="col-lg-4 pad1">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px"> Assignments</button></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 pad2">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px"> Upload Video</button></a>
+                </div>
+                <div class="col-lg-4 pad2">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px">Assessment</button></a>
+                </div>
+                <div class="col-lg-4 pad2">
+                    <a href=""><button class="btn btn-success mybutton font"style="border-radius:12px"> Certificate</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+
+</html>
+
+{% endblock%}
