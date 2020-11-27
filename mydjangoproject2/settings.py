@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -55,18 +56,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mydjangoproject2.urls'
 
-TEMPLATE_DIRS = (
 
-    os.path.join(BASE_DIR, 'template'),
-
-)
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR/'myapp2/template'
-                             
+            BASE_DIR/'myapp2/template'                       
             
         ],
 
