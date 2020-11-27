@@ -60,7 +60,7 @@ TEMPLATES = [
         'DIRS': [
             # BASE_DIR/'myapp2/template'
              os.path.join(BASE_DIR,'myapp2/template'),
-             os.path.join(BASE_DIR,'myapp2/template/Admin/admindashboard),
+             os.path.join(BASE_DIR,'myapp2/template/Admin/admindashboard'),
             #  os.path.join(BASE_DIR,'myapp2/template/'),
             #  os.path.join(BASE_DIR,'myapp2/template'),
             
