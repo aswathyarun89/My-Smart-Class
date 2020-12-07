@@ -51,13 +51,13 @@ def certificate(request):
 
     #  Student Module
 
-# def studentdashboard(request):
-#     return render(request, 'Student/StudentDashboard.html')
-# def viewstudentcourse(request):
-#     return render(request, 'Student/ViewMyCourse.html')
-# def studentassignment(request):
-#     return render(request, 'Student/Assignments.html')
-# def studentassessment(request):
-#     return render(request, 'Student/Assessments.html')
-# def studentcertificate(request):
-#     return render(request, 'Student/Certificate.html')
+def studentdashboard(request):
+    return render(request, 'Student/StudentDashboard.html')
+def viewstudentcourse(request):
+    return render(request, 'Student/ViewMyCourse.html')
+def studentassignment(request):
+    return render(request, 'Student/Assignments.html')
+def studentassessment(request):
+    return render(request, 'Student/Assessments.html')
+def studentcertificate(request):
+    return render(request, 'Student/Certificate.html')

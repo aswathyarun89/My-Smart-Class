@@ -26,11 +26,11 @@ urlpatterns = [
     
 
     # Student Module Path
-    # path('studashboard',views.studentdashboard,name="studashboard"),
-    # path('stucourse',views.viewstudentcourse,name="stucourse"),
-    # path('stuassignments',views.studentassignment,name="stuassignments"),
-    # path('stuassessments',views.studentassessment,name="stuassessments"),
-    # path('stucertificate',views.studentcertificate,name="stucertificate"),
+    path('studashboard/',views.studentdashboard,name="studashboard"),
+    path('stucourse/',views.viewstudentcourse,name="stucourse"),
+    path('stuassignments/',views.studentassignment,name="stuassignments"),
+    path('stuassessments/',views.studentassessment,name="stuassessments"),
+    path('stucertificate/',views.studentcertificate,name="stucertificate"),
         
 
 ]
