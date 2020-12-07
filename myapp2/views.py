@@ -6,8 +6,8 @@ def myfunction(request):
     return render(request, 'index.html')
 def dashboard(request):
     return render(request, 'Admin/Admindashboard.html')
-# def addinstructor(request):
-#     return render(request, 'admin/AddUpdateInstructor.html')
+def addinstructor(request):
+    return render(request, 'Admin/AddUpdateInstructor.html')
 # def addstudent(request):
 #     return render(request, 'admin/AddUpdateStudent.html')
 # def createcourse(request):
