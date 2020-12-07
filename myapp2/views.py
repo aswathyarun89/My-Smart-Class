@@ -5,7 +5,7 @@ from django.shortcuts import redirect, render
 def myfunction(request):
     return render(request, 'index.html')
 def dashboard(request):
-    return render(request, 'admin/Admindashboard.html')
+    return render(request, 'Admin/Admindashboard.html')
 def addinstructor(request):
     return render(request, 'admin/AddUpdateInstructor.html')
 def addstudent(request):
