@@ -8,12 +8,12 @@ def dashboard(request):
     return render(request, 'Admin/Admindashboard.html')
 def addinstructor(request):
     return render(request, 'Admin/AddUpdateInstructor.html')
-# def addstudent(request):
-#     return render(request, 'admin/AddUpdateStudent.html')
-# def createcourse(request):
-#     return render(request, 'admin/CreateCourses.html')
-# def instructorcalendar(request):
-#     return render(request, 'admin/InstructorCalender.html')
+def addstudent(request):
+    return render(request, 'Admin/AddUpdateStudent.html')
+def createcourse(request):
+    return render(request, 'Admin/CreateCourses.html')
+def instructorcalendar(request):
+    return render(request, 'admin/InstructorCalender.html')
 
 
 
