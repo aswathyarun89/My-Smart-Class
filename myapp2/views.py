@@ -27,18 +27,27 @@ def instructorcalendar(request):
 
     #  Instructor Module
 
-# def addstudentinspage(request):
-#     return render(request, 'Instructor/AddUpdateStudent.html')
-# def createcourseinspage(request):
-#     return render(request, 'Instructor/CreateCourses.html')
-# def instructorcalendarinspage(request):
-#     return render(request, 'Instructor/InstructorCalender.html')
-# def assignedcoursesins(request):
-#     return render(request, 'Instructor/ViewAssignedCourses.html')
-# def scheduleclass(request):
-#     return render(request, 'Instructor/ScheduleStartClass.html')
-# def instructordashboard(request):
-#     return render(request, 'Instructor/InstructorDashboard.html')
+def addstudentinspage(request):
+    return render(request, 'Instructor/AddUpdateStudent.html')
+def createcourseinspage(request):
+    return render(request, 'Instructor/CreateCourses.html')
+def instructorcalendarinspage(request):
+    return render(request, 'Instructor/InstructorCalender.html')
+def assignedcoursesins(request):
+    return render(request, 'Instructor/ViewAssignedCourses.html')
+def scheduleclass(request):
+    return render(request, 'Instructor/ScheduleStartClass.html')
+def instructordashboard(request):
+    return render(request, 'Instructor/InstructorDashboard.html')
+def assignments(request):
+    return render(request, 'Instructor/Assignments.html')
+def assessments(request):
+    return render(request, 'Instructor/Assesments.html')
+def documents(request):
+    return render(request, 'Instructor/UploadDocuments.html')
+def certificate(request):
+    return render(request, 'Instructor/Certificate.html')
+
 
     #  Student Module
 

@@ -13,12 +13,17 @@ urlpatterns = [
     
 
     # Instructor Module Path
-    # path('addstuins',views.addstudentinspage,name="addstuins"),
-    # path('createcourseins',views.createcourseinspage,name="createcourseins"),
-    # path('inscalins',views.instructorcalendarinspage,name="inscalins"),
-    # path('viewassigncourse',views.assignedcoursesins,name="viewassigncourse"),
-    # path('scheclass',views.scheduleclass,name="scheclass"),
-    # path('insdashboard', views.instructordashboard, name='insdashboard'),
+    path('insdashboard/', views.instructordashboard, name='insdashboard'),
+    path('addstuins/',views.addstudentinspage,name="addstuins"),
+    path('createcourseins/',views.createcourseinspage,name="createcourseins"),
+    path('inscalins/',views.instructorcalendarinspage,name="inscalins"),
+    path('viewassigncourse/',views.assignedcoursesins,name="viewassigncourse"),
+    path('scheclass/',views.scheduleclass,name="scheclass"),
+    path('asgmt/',views.assignments,name="asgmt"),
+    path('assesmt/',views.assessments,name="assesmt"),
+    path('document/',views.documents,name="document"),
+    path('cert/',views.certificate,name="cert"),
+    
 
     # Student Module Path
     # path('studashboard',views.studentdashboard,name="studashboard"),
