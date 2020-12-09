@@ -1,19 +1,19 @@
 from django.shortcuts import render
-from django.shortcuts import redirect, render
+# from django.shortcuts import redirect, render
 
 # Create your views here.
 def myfunction(request):
     return render(request, 'index.html')
 def dashboard(request):
-    return render(request, 'Admin/Admindashboard.html')
+    return render(request, 'Administrator/Admindashboard.html')
 def addinstructor(request):
-    return render(request, 'Admin/AddUpdateInstructor.html')
+    return render(request, 'Administrator/AddUpdateInstructor.html')
 def addstudent(request):
-    return render(request, 'Admin/AddUpdateStudent.html')
+    return render(request, 'Administrator/AddUpdateStudent.html')
 def createcourse(request):
-    return render(request, 'Admin/CreateCourses.html')
+    return render(request, 'Administrator/CreateCourses.html')
 def instructorcalendar(request):
-    return render(request, 'admin/InstructorCalender.html')
+    return render(request, 'Administrator/InstructorCalender.html')
 
 
 
