@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/style.css'%}">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .pad1 {
+            padding-top: 5%;
+            /* margin-top: 10% */
+        }
+        
+        .pad2 {
+            padding-top: 5%;
+            margin-top: 0px
+        }
+        
+        .sec {
+            display: block;
+            padding: 10px;
+            margin-bottom: 100px;
+            /* SIMPLY SET THIS PROPERTY AS MUCH AS YOU WANT. This changes the space below box1 */
+            text-align: justify;
+        }
+        
+        .mybutton {
+            height: 100px;
+            width: 100%;
+        }
+        
+        .font {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body style="background: linear-gradient(to right, #e6e9cc, #adb197);">
+
+    <div class="container-fluid">
+        <section class="sec">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg bg-black fixed-top">
+
+                        <a class="navbar-brand" href=""><img src="{% static 'images/Logo.png'%}"></a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <li class="nav-item pl-2 pr-2">
+                                    <a class="nav-link text-white text-uppercase font-weight-bold" href="">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                            </ul>
+                            <form class="form-inline my-2 my-lg-0">
+                                <div class="dropdown">
+                                    <button class="btn btn-success my-2 my-sm-0 mr-4 dropdown-toggle" type="submit" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {% if data.User_Reg_No.User_Photo %}
+                                        <img class="img-fluid rounded-circle"style="width:40px"src="/myapp2/media/{{data.User_Reg_No.User_Photo}}">
+                                        {% else %}
+                                        <img class="img-fluid rounded-circle"style="width:40px"src="{% static 'images/admin1_profilephoto.jpg'%}">
+                                        {% endif %}
+
+                                        &nbsp;{{data.User_Reg_No.First_Name}}
+                                    </button>
+                                    <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item " href="#">View/Update Profile</a>
+                                        <a class="dropdown-item" href="#">Change Password</a>
+                                        <a class="dropdown-item" href="/logout">Logout</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- End of Navbar -->
+
+        <section>
+            <div class="row">
+                <h3 class="font-weight-bold ml-3 pt-3">Student Dashboard</h3>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 pad1">
+                    <a href=""><button class="btn btn-outline-primary mybutton font"><label class="fa fa-envelope"></label> News &Events</button></a>
+                </div>
+                <div class="col-lg-4 pad1">
+                    <a href=""><button class="btn btn-outline-primary mybutton font"><label class=" fa fa-user"></label> Activities</button></a>
+                </div>
+                <div class="col-lg-4 pad1">
+                    <a href="/stucourse"><button class="btn btn-outline-primary mybutton font"><label class="fa fa-calendar"></label> View My Courses</button></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 pad2">
+                    <a href=""><button class="btn btn-outline-primary mybutton font"><label class="fa fa-user-plus"></label> My Class Room</button></a>
+                </div>
+                <div class="col-lg-4 pad2">
+                    <a href=""><button class="btn btn-outline-primary mybutton font"><label class="fa fa-book"></label>Course Progress</button></a>
+                </div>
+                <div class="col-lg-4 pad2">
+                    <a href="/stuassessments"><button class="btn btn-outline-primary mybutton font"><label class="fa fa-book"></label> Assessments</button></a>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

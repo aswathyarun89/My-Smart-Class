@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/css/mystyle.css'%}">
+    <script src="{% static '/js/script.js'%}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <h2>Instructor Calender</h2>
+    <input type="text" name="username" value="" onkeyup="checkname()" id="fullname">
+    <label id="error"></label>
+
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                "X-CSRFToken": '{{csrf_token}}'
+            }
+        });
+
+        checkname = function() {
+            $.ajax({
+                url: 'inputcheck',
+                type: 'POST',
+                data: {
+                    name: $('#username').val(),
+
+                },
+                success: function(response) {
+                    document.getElementById('error').innerHTML = response.error
+
+
+
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>
