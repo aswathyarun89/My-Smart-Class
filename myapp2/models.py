@@ -8,6 +8,7 @@ class User_Info(models.Model):
     User_Joining_Date=models.DateField()
     First_Name=models.CharField(max_length=30)
     Last_Name=models.CharField(max_length=30)
+    Full_Name=models.CharField(max_length=50,blank=True)
     Date_Birth=models.DateField(blank=True)
     Mobile_No=models.BigIntegerField()    
     Address=models.CharField(max_length=50)
@@ -32,6 +33,17 @@ class Course_Info(models.Model):
     Course_EndDate=models.DateField(blank=True)
     Course_Owner=models.CharField(max_length=30)
     Course_Owner_Id=models.ForeignKey(User_Info,on_delete=models.CASCADE)
+
+class Course_Student_Map(models.Model):
+    CSM_Id=models.BigIntegerField(primary_key = True)
+    Course_Id=models.ForeignKey(Course_Info,on_delete=models.CASCADE)
+    User_Reg_No=models.ForeignKey(User_Info,on_delete=models.CASCADE)
+    Assigned_Date=models.DateField(blank=True)
+    CSM_Status=models.CharField(max_length=20,blank=True)
+    Course_Progress=models.BigIntegerField()
+    
+
+
 
 
 

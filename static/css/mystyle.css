@@ -72,3 +72,50 @@
 .admin-dashboard-button-font {
     font-size: 20px;
 }
+
+.menu-border {
+    border-radius: 25px;
+    width: 270px;
+    height: 500px;
+}
+
+.menu-border-ins-sec1 {
+    border-radius: 25px;
+    width: 270px;
+    height: 200px;
+}
+
+.menu-border-ins-sec2 {
+    border-radius: 25px;
+    width: 270px;
+    height: 400px;
+}
+
+.content-border {
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.tableFixHead {
+    overflow-y: auto;
+    overflow-x: scroll;
+    height: 300px;
+    width: 100%;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0;
+}
+
+th {
+    background-color: #B1D3EE;
+}
+
+.modal-body .table-bordered td {
+    border: 1px solid grey;
+}
+
+.modal-md {
+    max-width: 80% !important;
+}

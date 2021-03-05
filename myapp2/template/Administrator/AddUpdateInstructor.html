@@ -12,15 +12,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/css/mystyle.css'%}">
     <script src="{% static '/js/script.js'%}"></script>
-    <title>Document</title>
+    <title>AddUpdateInstructor</title>
 </head>
 
-<body>
+<body onload="load_addins();">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 mt-2">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#exampleModal" data-backdrop="static" data-keyboard="false">
                     Add New Instructor
                 </button>
 
@@ -125,10 +125,6 @@
                                             <input type="file" name="fileupload">
                                         </div>
                                     </div>
-
-
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -140,78 +136,69 @@
                 </div>
             </div>
         </div><br>
-        <form type="GET" action="{% url 'exact_url' %}">
+        <!-- <form type="GET" action="{% url 'exact_url' %}"> -->
 
-            <div class="row">
-                <div class="col-lg-9">
-                    <input class="form-control" type="text" placeholder="Enter name or email to view/update..." id="search_box" name="search_box">
-                </div>
-                <div class="col-lg-2 ">
-                    <!-- Button trigger modal -->
-                    <button type="submit" class="btn btn-success">
+        <div class="row">
+            <div class="col-lg-9">
+                <input class="form-control" type="text" placeholder="Enter name or email to view/update..." id="search_box" name="search_box">
+            </div>
+            <div class="col-lg-2 ">
+                <!-- Button trigger modal -->
+                <button type="submit" onclick="submit()" class="btn btn-success">
                     Search
                 </button>
-                </div>
-                <br>
             </div>
-        </form>
+            <br>
+        </div>
+        <!-- </form> -->
 
         <div class="row">
             <div class="col-lg-12 mt-3">
                 <div class="table-responsive tableFixHead">
-                    <table class="table table-striped" id="display">
+                    <table class="table table-striped">
 
-                        <tbody>
-                            <div onload="hidden()">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col" id="hideaction">Action</th>
+                        <tbody id="display">
 
-
-                                    </tr>
-
-                                </thead>
-                            </div>
-
-
-                            <div onload="showaction()">
-                                {% for x in myitem %}
-
-                                <tr>
-                                    <td scope=" row "><a href="#exampleModalLong" data-toggle="modal">{{x.User_Reg_No}}</a></td>
-                                    <td>{{x.First_Name}}</td>
-                                    <td>{{x.Last_Name}}</td>
-                                    <td>{{x.Email}}</td>
-                                    <td> <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong" onclick="view('{{x.User_Reg_No}}')">
-                                    View/Edit
-                                  </button>
-                                    </td>
-
+                            <thead>
+                                <tr id="maintableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <!-- <th scope="col" id="showtableheader">Action</th> -->
                                 </tr>
-                            </div>
-                            {% endfor %} {% for x in display %}
-
-                            <tr>
-                                <td scope=" row " data-toggle="modal">{{x.User_Reg_No.User_Reg_No}}</a>
-                                </td>
-
-                                <td>{{x.User_Reg_No.First_Name}}</td>
-                                <td>{{x.User_Reg_No.Last_Name}}</td>
-                                <td>{{x.User_Reg_No.Email}}</td>
-
-                            </tr>
-                            {% endfor %}
+                                <tr id="searchtableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
                         </tbody>
                     </table>
                     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                             <div class="modal-content" style="background-color:rgb(237, 243, 243)">
-                                <div class="modal-header">
-                                    <h5 class="modal-title w-100 text-center" id="exampleModalLongTitle">Instructor Name</h5>
+                                <div class="modal-header" style="background-color:lightblue ;">
+                                    <div id="photo">
+                                        <!-- <img class="img-fluid rounded" style="width:80px" src="{% static 'images/admin1_profilephoto.jpg'%}"> -->
+                                    </div>
+                                    <div>
+                                        <h4 class="modal-title w-100 pl-3" id="exampleModalLongTitle"></h4>
+                                        <div>
+                                            <h6 class="modal-title w-100 pl-3" id="instructortype"></h6>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- <img class="img-fluid rounded-circle" style="width:40px" src="{% static 'images/admin1_profilephoto.jpg'%}"> -->
+
+
+
+
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -233,10 +220,18 @@
                                     <label>Password</label>
                                     <input type="password" id="pword" class="form-control">
                                     <label>Status</label>
-                                    <input type="text" id="status" class="form-control">
+                                    <select class="col-lg-8  form-control" name="stat" id="status">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                      </select>
+                                    <!-- <input type="text" id="status" class="form-control"> -->
                                     <label>joiningdate</label>
-                                    <input type="text" id="joiningdate" class="form-control">
-                                    <!-- <label>Gender</label>
+                                    <input type="date" id="u_join_date" class="form-control">
+                                    <label for="Photo" class="col-lg-3 pt-2 font-weight-bold">Photo</label>
+                                    <div class="col-lg-9">
+                                        <input id="userphoto" type="file" name="fileupload">
+                                    </div>
+                                    <label>Gender</label>
                                     <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="male">
                                     <label class="form-check-label" for="gridRadios1">
                                         Male
@@ -245,7 +240,7 @@
                                     <input class="form-check-input ml-2" type="radio" name="gridRadios" id="gridRadios2" value="female">
                                     <label class="form-check-label ml-4 " for="gridRadios2">
                                        Female
-                                    </label> -->
+                                    </label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -258,9 +253,6 @@
             </div>
         </div>
     </div>
-
-
-
 
 </body>
 

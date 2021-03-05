@@ -5,22 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static '/css/mystyle.css'%}">
     <script src="{% static '/js/script.js'%}"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;200;300;400;500;700&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 
-<body>
+<body onload="load_createcourse();">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 mt-2">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success mt-2" data-toggle="modal" data-target="#exampleModal">
+
+                <button type="submit" class="btn btn-success mt-2" data-toggle="modal" data-target="#exampleModal">
                     Add Course
                 </button>
+
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,7 +38,7 @@
                                 </button>
                             </div>
                             <div class="modal-body col-lg-11 mx-auto">
-                                <form action="/addcourse" method="POST">
+                                <form action="/addcourse" method="POST" enctype="multipart/form-data">
                                     {%csrf_token%}
                                     <div class="form-group row">
                                         <label for="CourseName" class="col-lg-4 pt-2 font-weight-bold">CourseName</label>
@@ -42,15 +47,38 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="LastName" class="col-lg-4 pt-2 font-weight-bold">Course Owner</label>
-                                        <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="LastName" name="courseowner">
-                                        </div>
+                                        <label for="courseowner" class="col-lg-4 pt-2 font-weight-bold">Course Owner</label>
+
+                                        <select class="col-lg-8  form-control" name="courseowner">
+                                            
+                                            <option disabled selected value> -- select an option -- </option>
+                                            {% for entry in selectedvalue %}
+                                            <option>{{entry.User_Reg_No.full_name}}</option>
+                                            {% endfor %}
+                                          </select>
                                     </div>
                                     <div class="form-group row">
                                         <label for="Courseduration" class="col-lg-4 pt-2 font-weight-bold">Course Duration</label>
+                                        <select class="col-lg-8 pl-3 form-control" name="courseduration" id="courseduration">
+                                            <option selected value> -- select an option -- </option>
+                                            <option>1 Month</option>
+                                            <option>2 Months</option>
+                                            <option>3 Months</option>
+                                            <option>6 Months</option>
+                                            <option>1 Year</option>
+                                            <option>Ongoing</option>                        
+                                          </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="CourseStartDate" class="col-lg-4 pt-2 font-weight-bold">Course Start Date</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="courseduration" name="courseduration">
+                                            <input type="date" class="form-control" id="CourseStartDate" name="CourseStartDate">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="CourseEndDate" class="col-lg-4 pt-2 font-weight-bold">Course End Date</label>
+                                        <div class="col-lg-8">
+                                            <input type="date" class="form-control" id="CourseEndDate" name="CourseEndDate">
                                         </div>
                                     </div>
 
@@ -58,6 +86,12 @@
                                         <label for="Email" class="col-lg-4 pt-2 font-weight-bold">Course Details</label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control" id="Email" name="coursedetails">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="CoursePhoto" class="col-lg-4 pt-2 font-weight-bold">Course Logo</label>
+                                        <div class="col-lg-8">
+                                            <input type="file" name="CourseLogoPic">
                                         </div>
                                     </div>
                             </div>
@@ -74,11 +108,11 @@
         </div><br>
         <div class="row">
             <div class="col-lg-9">
-                <input class="form-control" type="text" placeholder="Enter Course Name">
+                <input class="form-control" type="text" placeholder="Enter Course Name" id="course_search_box" name="course_search_box">
             </div>
             <div class="col-lg-2 ">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                <button type="button" class="btn btn-success" onclick="submitcoursename()">
                     Search
                 </button>
             </div><br>
@@ -89,100 +123,95 @@
             <div class="col-lg-12 mt-3">
                 <div class="table-responsive tableFixHead">
                     <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Course Name</th>
-                                <th scope="col">Course Duration</th>
-                                <th scope="col">Course Owner</th>
+                        <tbody id="displaycourse">
+                            <thead>
+                                <tr id="coursemaintableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Course Name</th>
+                                    <th scope="col">Course Duration</th>
+                                    <th scope="col">Course Owner</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for x in course_display %}
-
-                            <tr>
-                                <td scope=" row ">{{x.Course_Id}}</td>
-                                <td><a href="#exampleModalLong" data-toggle="modal">{{x.Course_Name}}</a></td>
-
-                                <td>{{x.Course_Duration}}</td>
-                                <td>{{x.Course_Owner}}</td>{{message}}
-
-
-                            </tr>
-                            {% endfor %}
+                                </tr>
+                                <tr id="coursesearchtableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Course Name</th>
+                                    <th scope="col">Course Duration</th>
+                                    <th scope="col">Course Owner</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
                         </tbody>
                     </table>
                     <!-- Search table data ends -->
 
+
+
+
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModalLong" tabindex="-2" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+                    <div class="modal fade" id="MyModal" tabindex="-2" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                         <div class="modal-dialog  modal-lg modal-dialog-centered modal-dialog-scrollable" role="document">
+
                             <div class="modal-content" style="background-color:rgb(237, 243, 243)">
-                                <div class="modal-header">
-                                    <h5 class="modal-title w-100 text-center" id="exampleModalLongTitle">Student Name</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+
+                                <div class="modal-header" style="background-color:lightblue ;">
+                                    <div>
+                                        <div id="courselogo" style="float:left">
+                                        </div>
+
+                                        <div style="margin-left: 70px;" style="float:right">
+                                            <h5 class="modal-title w-100 pl-3" id="coursename"></h5>
+                                            <div>
+                                                <h6 id="owner" class="modal-title w-100 pl-3"></h6>
+                                                <div>
+                                                    <h6 id="duration" class="modal-title w-100 pl-3"></h6>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
                                 </div>
+
+                                <div>
+                                    <textarea class="form-control ml-2" id='areaforinfo' style="border-color: #719ECE;margin-top:2px; border-radius: 10px; width:98%;" readonly></textarea>
+                                </div>
+
                                 <div class="modal-body">
-                                    <div class="row">
-                                        <div class="column col-sm-2 ">
-                                            <span><img class="img-fluid rounded-circle" style="width:80%" src="{% static 'images/CourseLogo.jpg'%}"></span>
+                                    <div style="width: 100%; overflow: hidden;">
+                                        <div style="width: 400px;float:left" id="csmtable_id">
+                                            <!-- <table class="table table-sm table-striped" style="width:80%" id="csmtable_id" onload=load_csmtable();>
+                                                <thead>
+                                                    <tr>
+                                                        <th>User Id</th>
+                                                        <th>Name</th>
+                                                    </tr>
+                                                </thead>
+                                            </table> -->
                                         </div>
+                                        <div style="float:left;">
 
-                                        <div class="column col-sm-7 pt-2 mr-5">
-                                            <table class=" table table-bordered">
 
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="font-weight-bold " width="12% ">Course Name</td>
-                                                        <td width="25% "></td>
+                                            <select class=" col-lg-12 form-control " id="studentname">
+                                                <option selected value>select an option</option>                                              
+                                                {% for z in c_student_name %}                                                
+                                                <option>{{z.User_Reg_No.User_Reg_No}}-{{z.User_Reg_No.full_name}}</option>                                                                                                                                 
+                                                {% endfor %}                                                                                             
+                                            </select>
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="font-weight-bold ">Course Owner</td>
-                                                        <td></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="font-weight-bold ">Course Duration</td>
-                                                        <td></td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="font-weight-bold ">Course Details</td>
-                                                        <td></td>
-
-                                                    </tr>
-
-                                                </tbody>
-                                            </table>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <button type="button " class="btn btn-success ml-auto mr-4" style="border-radius:12px">Assign Students</button>
-                                    </div>
-                                    <div class="column col-sm-9 pt-2 ml-2">
-                                        <table class=" table table-bordered">
+                                        <span>
+                                            {{key_CourseId_No.Course_Id}}
+                                            <span id="assignbtn"></span>
+                                        <!-- <button type="submit" class="btn btn-success mr-auto" style="border-radius:12px; margin-left:50px "onclick="AssignStudent({{key_CourseId_No.Course_Id}});" >Assign</button> -->
 
-                                            <tbody>
-                                                <tr>
-                                                    <td class="font-weight-bold text-center">Assigned Students</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center ">Student#1</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="text-center ">student#2</td>
-                                                </tr>
+                                        </span>
 
-                                            </tbody>
-                                        </table>
+
                                     </div>
+
                                     <div class="modal-footer ">
                                         <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
-                                        <button type="button " class="btn btn-primary ">Edit</button>
                                     </div>
                                 </div>
                             </div>
@@ -191,6 +220,7 @@
                 </div>
                 <br>
             </div>
+            -->
 
 
 </body>
