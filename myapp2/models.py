@@ -10,7 +10,7 @@ class User_Info(models.Model):
     Last_Name=models.CharField(max_length=30)
     Full_Name=models.CharField(max_length=50,blank=True)
     Date_Birth=models.DateField(blank=True)
-    Mobile_No=models.BigIntegerField()    
+    Mobile_No=models.CharField(max_length=30)    
     Address=models.CharField(max_length=50)
     Email=models.CharField(max_length=20)   
     Status=models.CharField(max_length=10)

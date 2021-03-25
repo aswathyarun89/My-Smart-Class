@@ -38,18 +38,19 @@
                                 </button>
                             </div>
                             <div class="modal-body col-lg-11 mx-auto">
-                                <form action="/addcourse" method="POST" enctype="multipart/form-data">
-                                    {%csrf_token%}
+                                <!-- <form action="/addcourse" method="POST" enctype="multipart/form-data"> -->
+                                <form>
+
                                     <div class="form-group row">
                                         <label for="CourseName" class="col-lg-4 pt-2 font-weight-bold">CourseName</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="FirstName" name="coursename">
+                                            <input type="text" class="form-control" id="coursename">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="courseowner" class="col-lg-4 pt-2 font-weight-bold">Course Owner</label>
 
-                                        <select class="col-lg-8  form-control" name="courseowner">
+                                        <select class="col-lg-8  form-control" id="courseowner">
                                             
                                             <option disabled selected value> -- select an option -- </option>
                                             {% for entry in selectedvalue %}
@@ -59,7 +60,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label for="Courseduration" class="col-lg-4 pt-2 font-weight-bold">Course Duration</label>
-                                        <select class="col-lg-8 pl-3 form-control" name="courseduration" id="courseduration">
+                                        <select class="col-lg-8 pl-3 form-control" id="courseduration">
                                             <option selected value> -- select an option -- </option>
                                             <option>1 Month</option>
                                             <option>2 Months</option>
@@ -72,32 +73,32 @@
                                     <div class="form-group row">
                                         <label for="CourseStartDate" class="col-lg-4 pt-2 font-weight-bold">Course Start Date</label>
                                         <div class="col-lg-8">
-                                            <input type="date" class="form-control" id="CourseStartDate" name="CourseStartDate">
+                                            <input type="date" class="form-control" id="CourseStartDate">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="CourseEndDate" class="col-lg-4 pt-2 font-weight-bold">Course End Date</label>
                                         <div class="col-lg-8">
-                                            <input type="date" class="form-control" id="CourseEndDate" name="CourseEndDate">
+                                            <input type="date" class="form-control" id="CourseEndDate">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="Email" class="col-lg-4 pt-2 font-weight-bold">Course Details</label>
+                                        <label for="coursedetails" class="col-lg-4 pt-2 font-weight-bold">Course Details</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="Email" name="coursedetails">
+                                            <input type="text" class="form-control" id="coursedetails">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="CoursePhoto" class="col-lg-4 pt-2 font-weight-bold">Course Logo</label>
                                         <div class="col-lg-8">
-                                            <input type="file" name="CourseLogoPic">
+                                            <input type="file" id="CourseLogoPic">
                                         </div>
                                     </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create </button>
+                                <button type="submit" class="btn btn-primary" onclick="createcourse()">Create </button>
                             </div>
                             </form>
 
@@ -180,34 +181,19 @@
                                 <div class="modal-body">
                                     <div style="width: 100%; overflow: hidden;">
                                         <div style="width: 400px;float:left" id="csmtable_id">
-                                            <!-- <table class="table table-sm table-striped" style="width:80%" id="csmtable_id" onload=load_csmtable();>
-                                                <thead>
-                                                    <tr>
-                                                        <th>User Id</th>
-                                                        <th>Name</th>
-                                                    </tr>
-                                                </thead>
-                                            </table> -->
                                         </div>
                                         <div style="float:left;">
-
-
                                             <select class=" col-lg-12 form-control " id="studentname">
                                                 <option selected value>select an option</option>                                              
                                                 {% for z in c_student_name %}                                                
                                                 <option>{{z.User_Reg_No.User_Reg_No}}-{{z.User_Reg_No.full_name}}</option>                                                                                                                                 
                                                 {% endfor %}                                                                                             
                                             </select>
-
                                         </div>
-                                        <span>
-                                            {{key_CourseId_No.Course_Id}}
-                                            <span id="assignbtn"></span>
-                                        <!-- <button type="submit" class="btn btn-success mr-auto" style="border-radius:12px; margin-left:50px "onclick="AssignStudent({{key_CourseId_No.Course_Id}});" >Assign</button> -->
-
-                                        </span>
-
-
+                                        <!-- <span>
+                                            {{key_CourseId_No.Course_Id}} -->
+                                        <span id="assignbtn"></span>
+                                        <!-- </span> -->
                                     </div>
 
                                     <div class="modal-footer ">
@@ -220,7 +206,7 @@
                 </div>
                 <br>
             </div>
-            -->
+
 
 
 </body>

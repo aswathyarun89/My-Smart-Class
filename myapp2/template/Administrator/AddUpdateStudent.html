@@ -15,7 +15,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="load_addstu()">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 mt-2">
@@ -36,6 +36,7 @@
                             </div>
                             <div class="modal-body col-lg-11 mx-auto">
                                 <form>
+
                                     <div class="form-group row">
                                         <label for="FirstName" class="col-lg-3 pt-2 font-weight-bold ">First Name</label>
                                         <div class="col-lg-9">
@@ -65,14 +66,14 @@
                                     <div class="form-group row">
                                         <label for="address" class="col-lg-3 pt-2 font-weight-bold">Address</label>
                                         <div class="col-lg-9">
-                                            <input type="text" class="form-control" id="address">
+                                            <input type="text" class="form-control" id="Address">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="Username" class="col-lg-3 pt-2 font-weight-bold">Username</label>
                                         <div class="col-lg-9">
-                                            <input type="text" value="" class="form-control" onkeyup="checkname()" name="username" id="username"><label id="error"></label>
+                                            <input type="text" value="" class="form-control" onkeyup="checkname()" id="username"><label id="error"></label>
                                         </div>
                                     </div>
 
@@ -86,13 +87,13 @@
                                     <div class="form-group row">
                                         <label for="Date" class="col-lg-3 pt-2 font-weight-bold">Joining Date</label>
                                         <div class="col-lg-9">
-                                            <input type="date" class="form-control" id="Date">
+                                            <input type="date" class="form-control" id="Joiningdate">
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label for="Status" class="col-lg-3 pt-2 font-weight-bold">Status</label>
-                                        <select class="col-lg-8 ml-3" id="">
+                                        <select class="col-lg-8 ml-3" id="status">
                                             <option selected>Active</option>
                                             <option>Inactive</option>
                                           </select>
@@ -103,32 +104,32 @@
                                             <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                                             <div class="col-sm-10">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                                    <input class="form-check-input gendertype" type="radio" name="gridRadios" value="male">
                                                     <label class="form-check-label" for="gridRadios1">
                                                         Male
                                                     </label>
 
-                                                    <input class="form-check-input ml-2" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                                    <input class="form-check-input ml-2 gendertype" type="radio" name="gridRadios" value="female">
                                                     <label class="form-check-label ml-4 " for="gridRadios2">
                                                        Female
                                                     </label>
-
-
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </fieldset>
-                                </form>
 
-
-
+                                    <div class="form-group row">
+                                        <label for="Photo" class="col-lg-3 pt-2 font-weight-bold">Photo</label>
+                                        <div class="col-lg-9">
+                                            <input type="file" id="stuphoto">
+                                        </div>
+                                    </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Create </button>
+                                <button type="submit" class="btn btn-primary" data-dismiss="modal" onclick="addstudent()">Create </button>
                             </div>
+                            <!-- </form> -->
                         </div>
                     </div>
                 </div>
@@ -136,11 +137,11 @@
         </div><br>
         <div class="row">
             <div class="col-lg-9">
-                <input class="form-control" type="text" placeholder="Enter Your email id">
+                <input class="form-control" type="text" placeholder="Enter Your email id" id="searchstudent" name="searchstudent">
             </div>
             <div class="col-lg-2 ">
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
+                <button type="submit" class="btn btn-success" onclick="submitstudent()">
                     Search
                 </button>
             </div><br>
@@ -152,29 +153,23 @@
             <div class="col-lg-12 mt-3">
                 <div class="table-responsive tableFixHead">
                     <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">First Name</th>
-                                <th scope="col">Last Name</th>
-                                <th scope="col">Email</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for x in display %}
-
-                            <tr>
-                                <td scope=" row ">{{x.User_Reg_No}}</td>
-                                <td><a href="#exampleModalLong" data-toggle="modal">{{x.First_Name}}</a></td>
-                                <td>{{x.Last_Name}}</td>
-                                <td>{{x.Email}}</td>
-                                <!-- <td> <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">
-                                    View/Edit
-                                  </button>
-                                </td> -->
-                            </tr>
-                            {% endfor %}
+                        <tbody id="studentdisplay">
+                            <thead>
+                                <tr id="mainstudenttableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                </tr>
+                                <tr id="searchstudenttableheader">
+                                    <th scope="col">ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
                         </tbody>
                     </table>
 
@@ -185,73 +180,71 @@
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                             <div class="modal-content" style="background-color:rgb(237, 243, 243)">
                                 <div class="modal-header">
-                                    <h5 class="modal-title w-100 text-center" id="exampleModalLongTitle">Student Name</h5>
+                                    <div id="studentphoto">
+
+                                    </div>
+                                    <div>
+                                        <h4 class="modal-title w-100 pl-3" id="FullName"></h4>
+                                        <div>
+                                            <h6 class="modal-title w-100 pl-3" id="studenttype"></h6>
+                                        </div>
+                                    </div>
+
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                                 </div>
                                 <div class="modal-body">
-                                    <table class="table table-bordered">
+                                    <label>First Name</label>
+                                    <input type="text" id="firstname" class="form-control">
+                                    <label>Last Name</label>
+                                    <input type="text" id="lastname" class="form-control">
+                                    <label>Email</label>
+                                    <input type="email" id="email" class="form-control">
+                                    <label>Contact</label>
+                                    <input type="text" id="mobileno" class="form-control">
+                                    <label>Address</label>
+                                    <input type="text" id="postad" class="form-control">
+                                    <label>Username</label>
+                                    <input disabled type="text" id="Uname" class="form-control">
+                                    <label>Password</label>
+                                    <input type="password" id="pword" class="form-control">
+                                    <label>Status</label>
+                                    <select class="col-lg-8  form-control" id="status">
+                                        <option>Active</option>
+                                        <option>Inactive</option>
+                                      </select>
+                                    <!-- <input type="text" id="status" class="form-control"> -->
+                                    <label>joiningdate</label>
+                                    <input type="date" id="u_join_date" class="form-control">
+                                    <!-- <label for="Photo" class="col-lg-3 pt-2 font-weight-bold">Photo</label>
+                                    <div class="col-lg-9">
+                                        <input id="userphoto" type="file" name="fileupload">
+                                    </div> -->
+                                    <label>Gender</label>&nbsp;&nbsp;
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="male">
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Male
+                                    </label>
 
-                                        <tbody>
-                                            <tr>
-                                                <td class="font-weight-bold" width="12%">First Name</td>
-                                                <td width="30%"></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Last Name</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Email</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">MobileNo</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Address</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Username</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Password</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Status</td>
-                                                <td></td>
-
-                                            </tr>
-                                            <tr>
-                                                <td class="font-weight-bold">Joining Date</td>
-                                                <td></td>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <input class="form-check-input ml-2" type="radio" name="gridRadios" id="gridRadios2" value="female">
+                                    <label class="form-check-label ml-4 " for="gridRadios2">
+                                       Female
+                                    </label>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Edit</button>
+                                    <button type="button" class="btn btn-primary" onclick="updatestudent(a)">Save</button>
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
                 </div>
-                <br>
             </div>
+            <br>
+        </div>
 </body>
 
 </html> {% endblock%}
